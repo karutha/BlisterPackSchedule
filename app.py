@@ -302,8 +302,10 @@ init_db()
 
 # Login Screen
 if not st.session_state.logged_in:
-    st.title("🔐 Login")
-    st.write("Please login to access the Blister Pack Scheduler")
+    # Center the title and description
+    st.markdown("<h1 style='text-align: center;'>🔐 Login</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center;'>Please login to access the Blister Pack Scheduler</p>", unsafe_allow_html=True)
+    st.write("")  # Add some spacing
     
     col1, col2, col3 = st.columns([1, 2, 1])
     
