@@ -183,6 +183,9 @@ def get_all_apps():
 
 def assign_app_to_user(user_id, app_id):
     """Assign an app to a user"""
+    print(f"DEBUG assign_app_to_user called with user_id={user_id}, app_id={app_id}")
+    print(f"DEBUG user_id type: {type(user_id)}, app_id type: {type(app_id)}")
+    
     conn = get_connection()
     c = conn.cursor()
     try:
@@ -190,20 +193,27 @@ def assign_app_to_user(user_id, app_id):
         c.execute('SELECT COUNT(*) FROM user_apps WHERE user_id = ? AND app_id = ?', (user_id, app_id))
         if c.fetchone()[0] > 0:
             conn.close()
+            print(f"DEBUG Assignment already exists")
             return True  # Already assigned
         
         # Insert new assignment
+        print(f"DEBUG Inserting user_id={user_id}, app_id={app_id}")
         c.execute('INSERT INTO user_apps (user_id, app_id) VALUES (?, ?)', (user_id, app_id))
         conn.commit()
         
         # Verify the insert worked
-        c.execute('SELECT COUNT(*) FROM user_apps WHERE user_id = ? AND app_id = ?', (user_id, app_id))
-        success = c.fetchone()[0] > 0
+        c.execute('SELECT * FROM user_apps WHERE user_id = ? AND app_id = ?', (user_id, app_id))
+        result = c.fetchone()
+        print(f"DEBUG After insert, query result: {result}")
+        
+        success = result is not None
         
         conn.close()
         return success
     except Exception as e:
         print(f"Error assigning app: {e}")
+        import traceback
+        traceback.print_exc()
         conn.close()
         return False
 
@@ -447,8 +457,11 @@ else:
                                             users_df['username'].tolist(),
                                             format_func=lambda x: f"{users_df[users_df['username']==x]['full_name'].values[0]} (@{x})")
                 
-                user_id = users_df[users_df['username'] == selected_user]['id'].values[0]
+                user_id = int(users_df[users_df['username'] == selected_user]['id'].values[0])
                 assigned_apps = get_user_assigned_apps(user_id)
+                
+                # Debug: Show the user_id being used
+                st.write(f"🔍 **Debug:** Assigning to user_id = {user_id}")
                 
                 # Show currently assigned apps
                 if assigned_apps:
