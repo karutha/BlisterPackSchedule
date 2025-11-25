@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blister Pack Scheduler</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Blister Pack Scheduler</h1>
+        <p>Manage patient cycles with precision.</p>
+      </header>
+
+      <main>
+        <section id="alerts-section" class="hidden">
+          <h2>⚠️ Actions Required</h2>
+          <div id="alerts-list" class="grid-container">
+            <!-- Alerts will be injected here -->
+          </div>
+        </section>
+
+        <section id="add-patient-section">
+          <h2>Add New Patient</h2>
+          <form id="add-patient-form">
+            <div class="input-group">
+              <label for="patient-select">Patient Name</label>
+              <select id="patient-select" required>
+                <option value="" disabled selected>Select a patient</option>
+                <option value="new">+ Add New Patient</option>
+              </select>
+              <input type="text" id="new-patient-name" class="hidden" placeholder="Enter new patient name">
+            </div>
+            <div class="input-group">
+              <label for="billing-date">Billing Date</label>
+              <input type="date" id="billing-date" required>
+            </div>
+            <button type="submit" class="btn-primary">Schedule Cycle</button>
+          </form>
+        </section>
+
+        <section id="dashboard-section">
+          <h2>Patient Dashboard</h2>
+          <div id="patient-list" class="list-container">
+            <!-- Patients will be injected here -->
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
