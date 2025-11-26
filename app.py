@@ -35,32 +35,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for sidebar collapse icon visibility
-st.markdown("""
-<style>
-/* Only target the sidebar collapse/expand button */
-[data-testid="collapsedControl"] {
-    color: #374151 !important;
-}
-
-[data-testid="collapsedControl"] svg {
-    color: #374151 !important;
-    fill: #374151 !important;
-    stroke: #374151 !important;
-}
-
-/* Target the collapse button in the sidebar when it's open */
-section[data-testid="stSidebar"] button[kind="header"] {
-    color: #374151 !important;
-}
-
-section[data-testid="stSidebar"] button[kind="header"] svg {
-    color: #374151 !important;
-    fill: #374151 !important;
-    stroke: #374151 !important;
-}
-</style>
-""", unsafe_allow_html=True)
 
 # Initialize database
 init_db()
@@ -70,43 +44,6 @@ init_default_data()
 if not st.session_state.logged_in:
     show_login_page()
 else:
-    # Add branding and user info to header
-    st.markdown(f"""
-        <style>
-        /* Style the Streamlit header */
-        header[data-testid="stHeader"] {{
-            background-color: #374151 ;
-            border-bottom: 1px solid #374151;
-        }}
-        
-        /* Make header buttons and icons white */
-        header[data-testid="stHeader"] button {{
-            color: #FFFFFF !important;
-        }}
-        
-        header[data-testid="stHeader"] button svg {{
-            color: #FFFFFF !important;
-            fill: #FFFFFF !important;
-        }}
-        
-        /* Add custom content to header */
-        header[data-testid="stHeader"]::before {{
-            content: "PHARMALIFE";
-            color: #FFFFFF;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-right: auto;
-            padding-left: 1rem;
-        }}
-        
-        header[data-testid="stHeader"]::after {{
-            content: "{st.session_state.full_name} ({st.session_state.role})";
-            color: #D1D5DB;
-            font-size: 0.9rem;
-            padding-right: 1rem;
-        }}
-        </style>
-    """, unsafe_allow_html=True)
     # Sidebar
     with st.sidebar:
         
