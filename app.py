@@ -254,7 +254,7 @@ else:
         
         /* Add custom content to header */
         header[data-testid="stHeader"]::before {{
-            content: "💊 PHARMALIFE";
+            content: "PHARMALIFE";
             color: #10B981;
             font-weight: 700;
             font-size: 1.1rem;
@@ -289,12 +289,12 @@ else:
         
         # Navigation menu
         if st.session_state.role == 'admin':
-            page = st.radio("", ["� Blister Scheduler", "� Patient Management", "⚙️ User Management", "🚪 Logout"], label_visibility="collapsed")
+            page = st.radio("", ["Blister Scheduler", "Patient Management", "User Management", "Logout"], label_visibility="collapsed")
         else:
-            page = st.radio("", ["� Blister Scheduler", "� Patient Management", "🚪 Logout"], label_visibility="collapsed")
+            page = st.radio("", ["Blister Scheduler", "Patient Management", "Logout"], label_visibility="collapsed")
     
     # Handle navigation
-    if page == "🚪 Logout":
+    if page == "Logout":
         st.session_state.logged_in = False
         st.session_state.user_id = None
         st.session_state.username = None
@@ -302,13 +302,13 @@ else:
         st.session_state.role = None
         st.rerun()
     
-    elif page == "� Patient Management":
+    elif page == "Patient Management":
         show_patient_management_page()
     
-    elif page == "⚙️ User Management" and st.session_state.role == 'admin':
+    elif page == "User Management" and st.session_state.role == 'admin':
         show_user_admin_page()
     
-    elif page == "� Blister Scheduler":
+    elif page == "Blister Scheduler":
         if not has_blister_access:
             st.error("You don't have access to the Blister Pack Scheduler.")
         else:

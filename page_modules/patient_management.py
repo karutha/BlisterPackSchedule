@@ -11,10 +11,8 @@ def show_patient_management_page():
     
     # Fetch patients
     patients_df = get_patients()
-    
     # Statistics with modern design
-    st.markdown("### 📊 Patient Statistics")
-    st.markdown("---")
+    st.markdown("## Patient Statistics")
     col1, col2, col3 = st.columns(3)
     with col1:
         st.metric("📊 Total Patients", len(patients_df) if not patients_df.empty else 0)
@@ -26,12 +24,10 @@ def show_patient_management_page():
         st.metric("💰 Avg Cost", f"${avg_cost:.2f}")
     
     # Tabs
-    st.markdown("---")
     tab1, tab2 = st.tabs(["📋 All Patients", "➕ Add New Patient"])
     
     with tab1:
-        st.markdown("#### Manage Patients")
-        st.markdown("")
+        st.markdown("### Manage Patients")
         
         if not patients_df.empty:
             # Search functionality
@@ -43,8 +39,6 @@ def show_patient_management_page():
                 filtered_df = patients_df
             
             st.caption(f"Showing {len(filtered_df)} of {len(patients_df)} patients")
-            st.markdown("")
-            
             # Display patients in modern expanders
             for index, patient in filtered_df.iterrows():
                 with st.expander(f"👤 **{patient['name']}** - Next: {patient['next_schedule_date']}", expanded=False):
@@ -66,7 +60,6 @@ def show_patient_management_page():
                         st.markdown("**🔄 Next Schedule**")
                         st.write(patient['next_schedule_date'])
                     
-                    st.divider()
                     st.markdown("**Edit Patient**")
                     
                     with st.form(key=f"edit_form_{patient['id']}"):
@@ -115,8 +108,7 @@ def show_patient_management_page():
             st.info("📝 No patients found. Add your first patient using the 'Add New Patient' tab!")
     
     with tab2:
-        st.markdown("#### Add New Patient")
-        st.markdown("")
+        st.markdown("### Add New Patient")
         
         with st.form("add_patient_form", clear_on_submit=True):
             col1, col2 = st.columns(2)
@@ -156,6 +148,4 @@ def show_patient_management_page():
             with col_submit2:
                 st.form_submit_button("🔄 Clear Form", type="secondary", use_container_width=True)
     
-    # Footer
-    st.markdown("---")
-    st.caption("💊 Pharmalife Pharmacy - Patient Management System")
+
