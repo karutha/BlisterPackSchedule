@@ -1,2 +1,1 @@
-[theme]
-base = "light"
+# No theme configuration - uses Streamlit defaults

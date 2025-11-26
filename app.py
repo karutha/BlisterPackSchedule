@@ -44,6 +44,25 @@ init_default_data()
 if not st.session_state.logged_in:
     show_login_page()
 else:
+    # Add branding to header bar
+    st.markdown(f"""
+        <style>
+        header[data-testid="stHeader"]::before {{
+            content: "PHARMALIFE";
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-right: auto;
+            padding-left: 1rem;
+        }}
+        
+        header[data-testid="stHeader"]::after {{
+            content: "{st.session_state.full_name} ({st.session_state.role})";
+            font-size: 0.9rem;
+            padding-right: 1rem;
+        }}
+        </style>
+    """, unsafe_allow_html=True)
+    
     # Sidebar
     with st.sidebar:
         
