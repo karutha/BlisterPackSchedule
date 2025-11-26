@@ -1,7 +1,6 @@
 """
 Patient Management page - Full CRUD operations for patients with modern design
 """
-
 import streamlit as st
 import pandas as pd
 from modules.patient_management import get_patients, add_patient, update_patient, delete_patient
