@@ -49,7 +49,7 @@ st.markdown("""
     /* Main background */
     .stApp {
         background-color: #111827;
-        color: #F9FAFB;
+        color: #FFFFFF;
     }
     
     /* Sidebar */
@@ -85,7 +85,7 @@ st.markdown("""
         background: transparent;
         padding: 0.75rem 1rem;
         border-radius: 8px;
-        color: #D1D5DB;
+        color: #FFFFFF !important;
         font-size: 0.95rem;
         font-weight: 500;
         border: 1px solid transparent;
@@ -98,9 +98,18 @@ st.markdown("""
         text-align: left;
     }
     
+    /* Force text color on inner elements */
+    section[data-testid="stSidebar"] .stRadio > div[role="radiogroup"] > label p {
+        color: #FFFFFF !important;
+        font-weight: 500;
+    }
+    
     section[data-testid="stSidebar"] .stRadio > div[role="radiogroup"] > label:hover {
-        background: #374151;
-        color: #FFFFFF;
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    section[data-testid="stSidebar"] .stRadio > div[role="radiogroup"] > label:hover p {
+        color: #FFFFFF !important;
     }
 
     /* Hide the radio circle */
@@ -110,16 +119,19 @@ st.markdown("""
     
     /* Selected item style */
     section[data-testid="stSidebar"] .stRadio > div[role="radiogroup"] > label[data-checked="true"] {
-        background: #1F2937;
-        color: #10B981;
-        border: 1px solid #374151;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid #10B981;
         box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+    
+    section[data-testid="stSidebar"] .stRadio > div[role="radiogroup"] > label[data-checked="true"] p {
+        color: #10B981 !important;
         font-weight: 600;
     }
     
     /* Headers */
     h1, h2, h3, h4, h5, h6 {
-        color: #F9FAFB;
+        color: #FFFFFF;
         font-weight: 700;
     }
     
@@ -133,7 +145,7 @@ st.markdown("""
     
     .stButton > button[kind="primary"] {
         background-color: #10B981;
-        color: white;
+        color: #FFFFFF;
     }
     
     .stButton > button[kind="primary"]:hover {
@@ -142,7 +154,7 @@ st.markdown("""
     
     .stButton > button[kind="secondary"] {
         background-color: #374151;
-        color: #F3F4F6;
+        color: #FFFFFF;
         border: 1px solid #4B5563;
     }
     
@@ -163,11 +175,11 @@ st.markdown("""
     [data-testid="stMetricValue"] {
         font-size: 1.8rem;
         font-weight: 700;
-        color: #F9FAFB;
+        color: #FFFFFF;
     }
     
     [data-testid="stMetricLabel"] {
-        color: #9CA3AF;
+        color: #E5E7EB;
         font-weight: 600;
         font-size: 0.9rem;
     }
@@ -177,8 +189,12 @@ st.markdown("""
         background: #1F2937;
         border: 1px solid #374151;
         border-radius: 6px;
-        color: #F9FAFB;
+        color: #FFFFFF !important;
         font-weight: 600;
+    }
+    
+    .streamlit-expanderHeader p {
+        color: #FFFFFF !important;
     }
     
     .streamlit-expanderHeader:hover {
@@ -186,15 +202,19 @@ st.markdown("""
         border-color: #4B5563;
     }
     
+    .streamlit-expanderHeader:hover p {
+        color: #FFFFFF !important;
+    }
+    
     /* Tabs */
     .stTabs [data-baseweb="tab"] {
-        color: #9CA3AF;
+        color: #D1D5DB;
         font-weight: 600;
         font-size: 0.95rem;
     }
     
     .stTabs [aria-selected="true"] {
-        color: #F9FAFB;
+        color: #FFFFFF;
         border-bottom-color: #10B981;
     }
     
@@ -255,7 +275,7 @@ else:
         /* Add custom content to header */
         header[data-testid="stHeader"]::before {{
             content: "PHARMALIFE";
-            color: #10B981;
+            color: #FFFFFF;
             font-weight: 700;
             font-size: 1.1rem;
             margin-right: auto;
@@ -289,9 +309,9 @@ else:
         
         # Navigation menu
         if st.session_state.role == 'admin':
-            page = st.radio("", ["Blister Scheduler", "Patient Management", "User Management", "Logout"], label_visibility="collapsed")
+            page = st.radio("Navigation Menu", ["Blister Scheduler", "Patient Management", "User Management", "Logout"], label_visibility="collapsed")
         else:
-            page = st.radio("", ["Blister Scheduler", "Patient Management", "Logout"], label_visibility="collapsed")
+            page = st.radio("Navigation Menu", ["Blister Scheduler", "Patient Management", "Logout"], label_visibility="collapsed")
     
     # Handle navigation
     if page == "Logout":

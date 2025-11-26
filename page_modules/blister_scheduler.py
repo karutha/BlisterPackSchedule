@@ -65,7 +65,7 @@ def show_blister_scheduler_page():
         if not patients_df.empty:
             st.dataframe(
                 patients_df[['name', 'billing_date', 'next_schedule_date']],
-                use_container_width=True,
+                width="stretch",
                 hide_index=True
             )
         else:
@@ -167,7 +167,7 @@ def show_blister_scheduler_page():
             with col_man3:
                 st.write("") # Spacing
                 st.write("") # Spacing
-                if st.button("Start Cycle", type="primary", key="manual_start_btn", use_container_width=True):
+                if st.button("Start Cycle", type="primary", key="manual_start_btn", width="stretch"):
                     # Get patient details
                     patient_row = patients_df[patients_df['name'] == selected_patient_name].iloc[0]
                     cycle_patient(
@@ -189,7 +189,7 @@ def show_blister_scheduler_page():
             recent = history_df.head(10)
             st.dataframe(
                 recent[['patient_name', 'previous_billing_date', 'new_billing_date', 'cycled_at']],
-                use_container_width=True,
+                width="stretch",
                 hide_index=True
             )
             if len(history_df) > 10:

@@ -85,7 +85,7 @@ def show_patient_management_page():
                         
                         col_btn1, col_btn2 = st.columns(2)
                         with col_btn1:
-                            if st.form_submit_button("💾 Update Patient", type="primary", use_container_width=True):
+                            if st.form_submit_button("💾 Update Patient", type="primary", width="stretch"):
                                 update_patient(
                                     patient['id'],
                                     edit_name,
@@ -99,7 +99,7 @@ def show_patient_management_page():
                                 st.rerun()
                         
                         with col_btn2:
-                            if st.form_submit_button("🗑️ Delete Patient", type="secondary", use_container_width=True):
+                            if st.form_submit_button("🗑️ Delete Patient", type="secondary", width="stretch"):
                                 delete_patient(patient['id'])
                                 st.success(f"✅ Deleted {patient['name']}!")
                                 st.rerun()
@@ -129,7 +129,7 @@ def show_patient_management_page():
             col_submit1, col_submit2 = st.columns(2)
             
             with col_submit1:
-                if st.form_submit_button("➕ Add Patient", type="primary", use_container_width=True):
+                if st.form_submit_button("➕ Add Patient", type="primary", width="stretch"):
                     if new_name and new_billing_date:
                         add_patient(
                             new_name,
@@ -145,6 +145,6 @@ def show_patient_management_page():
                         st.error("❌ Please enter at least Patient Name and Billing Date")
             
             with col_submit2:
-                st.form_submit_button("🔄 Clear Form", type="secondary", use_container_width=True)
+                st.form_submit_button("🔄 Clear Form", type="secondary", width="stretch")
     
 
