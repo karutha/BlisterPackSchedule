@@ -8,8 +8,8 @@ from modules.auth import authenticate_user
 def show_login_page():
     """Display the login page"""
     # Center the title and description
-    st.markdown("<h1 style='text-align: center; color: #10B981;'>💊 Pharmalife Pharmacy</h1>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center; color: #F9FAFB;'>🔐 Login</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #10B981; font-size: 2.5rem; font-weight: 700;'>💊 PHARMALIFE PHARMACY</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #F9FAFB;'>🔐 Login</p>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center; color: #9CA3AF;'>Please login to access the Blister Pack Scheduler</p>", unsafe_allow_html=True)
     st.write("")  # Add some spacing
     
